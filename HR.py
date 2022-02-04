@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.metrics import accuracy_score
+import pickle 
 
 #Understanding the dataset
 
@@ -21,10 +22,7 @@ print(data.describe())
 corrMatrix = data.corr()
 sns.heatmap(corrMatrix, annot=True)
 plt.show()
-plt.bar(data.department,data.left)
-plt.xlabel("satisfaction_level")
-plt.ylabel("Left")
-plt.show()
+
 
 #creation de un train/test dataset
 
@@ -50,3 +48,7 @@ print(clf.predict(d_test))
 
 #accurracy_score
 print("accuracy is : ",accuracy_score(l_test,clf.predict(d_test)))
+
+#putting the model into a file
+with open('HRattrition_model_RandomForest.pkl', 'wb') as file:
+  pickle.dump(clf, file)
