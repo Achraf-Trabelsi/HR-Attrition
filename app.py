@@ -7,7 +7,7 @@ with open(f'HRattrition_model_RandomForest.pkl', 'rb') as f:
 
 app = fa.Flask(__name__, template_folder='templates')
 
-@app.route('/')
+@app.route('/',methods=['GET', 'POST'])
 
 
 def main():
@@ -23,8 +23,8 @@ def main():
         years_at_company = fa.request.form['years_at_company']   
         work_accident = fa.request.form['work_accident']   
         promotion_last_5years = fa.request.form['promotion_last_5years']   
-        department = fa.request.form['department']   
         salary = fa.request.form['salary']   
+        department = fa.request.form['department']   
         
 
         input_variables = pd.DataFrame([[satisfaction_level, last_evaluation, number_of_projects,
@@ -45,5 +45,5 @@ def main():
                                      )
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
