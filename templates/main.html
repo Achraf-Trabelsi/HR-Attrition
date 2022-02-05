@@ -1,9 +1,48 @@
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+<!doctype html>
+<html>
+<style>
+form {
+    margin: auto;
+    width: 35%;
+}.result {
+    margin: auto;
+    width: 35%;
+    border: 1px solid #ccc;
+}
+</style><head>
+    <title>HR Model</title>
 </head>
-<header>
-    HR form
-</header>
-<form>      
-   
-  </form>
+<form action="{{ url_for('main') }}" method="POST">
+    <fieldset>
+        <legend>Input values:</legend>
+        <input name="satisfaction_level" type="number" required>
+        <br>
+        <input name="last_evaluation" type="number" required>
+        <br>
+        <input name="number_of_projects" type="number" required>
+        <br>
+        <input name="average_monthly_hours" type="number" required>
+        <br>
+        <input name="years_at_company" type="number" required>
+        <br>
+        <input name="work_accident" type="number" required>
+        <br>
+        <input name="promotion_last_5years" type="number" required>
+        <br>
+        <input name="salary"  required>
+        <br>
+        <input name="departement"  required>
+        <input type="submit">
+    </fieldset>
+</form>
+<br>
+<div class="result" >
+    {% if result %}
+        {% for variable, value in original_input.items() %}
+            <b>{{ variable }}</b> : {{ value }}
+        {% endfor %}
+        <br>
+        <br> Predicted number of bikes in use:
+           <p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
