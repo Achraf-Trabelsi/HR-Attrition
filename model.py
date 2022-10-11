@@ -29,7 +29,7 @@ dt = data
 dt = dt.drop(labels="left", axis=1)
 # print(dt.columns)
 d_train, d_test, l_train, l_test = train_test_split(dt, label, test_size=0.33)
-
+d_test.to_csv('test.csv', index=False)
 # data preprocessiong
 
 enc = OrdinalEncoder()
