@@ -13,4 +13,5 @@ matplotlib
 seaborn
 sklearn
 flask
+flasgger
 

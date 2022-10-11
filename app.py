@@ -2,26 +2,40 @@ from flask import Flask, request
 import pickle
 import pandas as pd
 from sklearn.preprocessing import OrdinalEncoder
+from flasgger import Swagger
 
-pickle_in = open("weights/HRattrition_model_RandomForest.pkl", "rb")
+pickle_in = open("weights/best_model.pkl", "rb")
 clf = pickle.load(pickle_in)
 app = Flask(__name__)
+Swagger(app)
 
-@app.route('/')
+@app.route("/")
 def welcome():
-    return 'this is my first flask app with HR attrition model'
+    return "this is my first flask app with HR attrition model"
 
 
-@app.route('/predict_file', methods=['POST'])
+@app.route("/predict_file", methods=["POST"])
 def predict_on_test():
-    df_test = pd.read_csv(request.files['file'])
+    """
+    let's make predictions
+    ---
+    parameters:
+     - name: file
+       in: formData
+       type: file
+       required: true
+    responses:
+        200:
+            description: The output values
+    """
+    df_test = pd.read_csv(request.files["file"])
     enc = OrdinalEncoder()
     df_test = enc.fit_transform(df_test)
     pred = clf.predict(df_test)
     return "The prediction is " + str(list(pred))
 
 
-'''
+"""
 @app.route("/", methods=["GET", "POST"])
 def main():
     if fa.request.method == "GET":
@@ -77,7 +91,7 @@ def main():
             result=prediction,
         )
 
-'''
+"""
 
 if __name__ == "__main__":
     app.run(debug=True)
