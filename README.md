@@ -2,16 +2,15 @@
 
 This is a model that helps HR predicts the staff turnover (staff leaving or not)
 
+## Content 
 
-First, we stated by understanding data and describing its features 
-with pandas.describe and sns.heatmap we were able to see the relations between diffrent features.
+We follow those steps :
 
-Then, we were able to create our model after doing some preprocessing for our data (ordinal encoding)
-and using train_test_split.
-
-we used a random forset as our classifier and we evaluated it's performance by calculating the accuracy metric.
-finally we deployed the model into a small web app thanks to flask and pickle. 
-
+* Understand and Clean the data
+* Preprocess and Prepare the data
+* Run ML model ( Random Forest)
+* Evaluate ( accuracy and f1-score)
+* Deploy with flask and some MLops Stuff :D
 
 
 
